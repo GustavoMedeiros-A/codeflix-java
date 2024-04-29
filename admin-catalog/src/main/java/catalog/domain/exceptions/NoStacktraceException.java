@@ -6,7 +6,7 @@ public class NoStacktraceException extends RuntimeException {
         this(message, null);
     }
 
-    // add NO stackTrace here in runTimeException
+    // add NO StackTrace here in runTimeException // Não fica enchendo a StackTrace
     public NoStacktraceException(final String message, final Throwable cause) {
         super(message, cause, true, false);
     }
