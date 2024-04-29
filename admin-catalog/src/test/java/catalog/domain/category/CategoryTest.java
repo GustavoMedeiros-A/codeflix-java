@@ -203,4 +203,90 @@ public class CategoryTest {
         // Pass is Active as False need to set deleted_at as default
         Assertions.assertNull(actualCategory.getDeletedAt());
     }
+
+    @Test
+    public void givenAValidCategory_whenCallUpdate_thenReturnCategoryUpdated() {
+        final var expectedName = "Filmes";
+        final var expectedDescription = "A categoria mais assistida";
+        final var expectedIsActive = true;
+
+        // Cria como true e espera que ele fique falso
+        final var aCategory = Category.newCategory("Old name", "Old category", expectedIsActive);
+        Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
+
+        final var updatedAt = aCategory.getUpdatedAt();
+        final var createdAt = aCategory.getCreatedAt();
+
+        final var updatedCategory = aCategory.update(expectedName, expectedDescription, expectedIsActive);
+
+        Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
+
+        Assertions.assertEquals(aCategory.getId(), updatedCategory.getId());
+        Assertions.assertEquals(expectedName, updatedCategory.getName());
+        Assertions.assertEquals(expectedDescription, updatedCategory.getDescription());
+        Assertions.assertEquals(expectedIsActive, updatedCategory.isActive());
+        Assertions.assertEquals(createdAt, updatedCategory.getCreatedAt());
+        Assertions.assertTrue(updatedCategory.getUpdatedAt().isAfter(updatedAt)); // Verificar se a data foi atualizada
+        // Pass is Active as False need to set deleted_at as default
+        Assertions.assertNull(updatedCategory.getDeletedAt());
+    }
+
+    @Test
+    public void givenAValidCategory_whenCallUpdateToInactive_thenReturnCategoryUpdated() {
+        final var expectedName = "Filmes";
+        final var expectedDescription = "A categoria mais assistida";
+        final var expectedIsActive = false;
+
+        // Cria como true e espera que ele fique falso
+        final var aCategory = Category.newCategory("Old name", "Old category", expectedIsActive);
+        Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
+
+        final var updatedAt = aCategory.getUpdatedAt();
+        final var createdAt = aCategory.getCreatedAt();
+
+        final var updatedCategory = aCategory.update(expectedName, expectedDescription, expectedIsActive);
+
+        Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
+
+        Assertions.assertEquals(aCategory.getId(), updatedCategory.getId());
+        Assertions.assertEquals(expectedName, updatedCategory.getName());
+        Assertions.assertEquals(expectedDescription, updatedCategory.getDescription());
+        Assertions.assertEquals(expectedIsActive, updatedCategory.isActive());
+        Assertions.assertEquals(createdAt, updatedCategory.getCreatedAt());
+        Assertions.assertTrue(updatedCategory.getUpdatedAt().isAfter(updatedAt)); // Verificar se a data foi atualizada
+        // Pass is Active as False need to set deleted_at as default
+        assertNotNull(aCategory.getDeletedAt());
+        assertFalse(aCategory.isActive());
+    }
+
+    @Test
+    public void givenAValidCategory_whenCallUpdateWithInvalidParam_thenReturnCategoryUpdated() {
+        final String expectedName = null;
+        final var expectedDescription = "A categoria mais assistida";
+        final var expectedIsActive = true;
+
+        // Cria como true e espera que ele fique falso
+        final var aCategory = Category.newCategory("Old name", "Old category", expectedIsActive);
+        Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
+
+        final var updatedAt = aCategory.getUpdatedAt();
+        final var createdAt = aCategory.getCreatedAt();
+
+        final var updatedCategory = aCategory.update(expectedName, expectedDescription, expectedIsActive);
+
+        // Não valida para não lançar exception
+        // Assertions.assertDoesNotThrow(() -> aCategory.validate(new
+        // ThrowsValidationHandler()));
+
+        Assertions.assertEquals(aCategory.getId(), updatedCategory.getId());
+        Assertions.assertEquals(expectedName, updatedCategory.getName());
+        Assertions.assertEquals(expectedDescription, updatedCategory.getDescription());
+        Assertions.assertEquals(expectedIsActive, updatedCategory.isActive());
+        Assertions.assertEquals(createdAt, updatedCategory.getCreatedAt());
+        Assertions.assertTrue(updatedCategory.getUpdatedAt().isAfter(updatedAt)); // Verificar se a data foi atualizada
+        // Pass is Active as False need to set deleted_at as default
+        assertNull(aCategory.getDeletedAt());
+        assertTrue(aCategory.isActive());
+    }
+
 }
