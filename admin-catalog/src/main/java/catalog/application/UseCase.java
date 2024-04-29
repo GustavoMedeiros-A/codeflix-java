@@ -1,11 +1,11 @@
-// package catalog.application;
+package catalog.application;
 
-// import catalog.domain.category.Category;
+import catalog.domain.category.Category;
 
-// public class UseCase {
+public class UseCase {
 
-// public Category execute() {
-// // return new Category();
-// }
+    public Category execute() {
+        return Category.newCategory("Filme", "description", true);
+    }
 
-// }
+}
