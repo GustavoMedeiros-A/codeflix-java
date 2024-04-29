@@ -3,6 +3,7 @@ package catalog.domain.category;
 import java.time.Instant;
 
 import catalog.domain.AggregateRoot;
+import catalog.domain.validation.ValidationHandler;
 
 public class Category extends AggregateRoot<CategoryID> {
 
@@ -35,6 +36,11 @@ public class Category extends AggregateRoot<CategoryID> {
         final var id = CategoryID.unique();
         final var now = Instant.now();
         return new Category(id, name, description, active, now, now, null);
+    }
+
+    @Override
+    public void validate(final ValidationHandler handler) {
+        new CategoryValidator(this, handler).validate();
     }
 
     public CategoryID getId() {
