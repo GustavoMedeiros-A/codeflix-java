@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface ValidationHandler {
 
-    ValidationHandler append(Error anError);
+    ValidationHandler append(MyError anError);
 
     ValidationHandler append(ValidationHandler aHandler);
 
     ValidationHandler validate(Validation aValidation);
 
+    List<MyError> getErrors();
+
     default boolean hasError() {
         return getErrors() != null && !(getErrors().isEmpty());
     }
-
-    List<Error> getErrors();
 
     public interface Validation {
         void validate();

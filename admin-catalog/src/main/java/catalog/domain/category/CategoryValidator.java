@@ -1,5 +1,6 @@
 package catalog.domain.category;
 
+import catalog.domain.validation.MyError;
 import catalog.domain.validation.ValidationHandler;
 import catalog.domain.validation.Validator;
 
@@ -14,6 +15,8 @@ public class CategoryValidator extends Validator {
 
     @Override
     public void validate() {
-
+        if (this.category.getName() == null) {
+            this.validationHandler().append(new MyError("'name' should not be null"));
+        }
     };
 }
