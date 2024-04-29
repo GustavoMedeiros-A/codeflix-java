@@ -1,11 +1,12 @@
 package catalog.application;
 
-import catalog.domain.category.Category;
+// Use Generic IN and OUT
+public abstract class UseCase<IN, OUT> {
 
-public class UseCase {
-
-    public Category execute() {
-        return Category.newCategory("Filme", "description", true);
-    }
+    // By default useCase implement the COMMAND
+    // The Execute is the public method
+    // Create..UseCase
+    // Delete..UseCase
+    public abstract OUT execute(IN aIn);
 
 }
