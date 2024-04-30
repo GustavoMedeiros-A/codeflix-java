@@ -1,5 +1,7 @@
 # Java project to create a CatalogAdmin
 
+**USE JAVA 19**
+
 **Start create the folders**
 
 - Application

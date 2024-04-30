@@ -1,15 +1,17 @@
 package catalog.application.category.create;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.Objects;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.AdditionalAnswers;
 
 import catalog.domain.category.CategoryGateway;
+
+import org.mockito.AdditionalAnswers;
 
 public class CreateCategoryUseCaseTest {
 
@@ -31,20 +33,21 @@ public class CreateCategoryUseCaseTest {
         final CategoryGateway categoryGateway = Mockito.mock(CategoryGateway.class);
         // When call create method from Gateway return the first params (That need to be
         // the created Category)
-        Mockito.when(categoryGateway.create(Mockito.any())).thenAnswer(AdditionalAnswers.returnsFirstArg());
+        Mockito.when(categoryGateway.create(any())).thenAnswer(AdditionalAnswers.returnsFirstArg());
 
-        final var useCase = new CreateCategoryUseCase();
+        // Use Implementation
+        final var useCase = new DefaultCreateCategoryUseCase(categoryGateway);
         // Pass the execute
         // UseCase implement the Command
         final var actualOutput = useCase.execute(aCommand);
 
         assertNotNull(actualOutput);
-        assertNotNull(categoryGateway.getId());
+        assertNotNull(actualOutput.id());
 
         // Verify with the create was called one time
         // And verify expected name with the current category Name
         // Lambda Function
-        Mockito.verify(categoryGateway, Mockito.times(1)).create(Mockito.argThat(aCategory -> {
+        Mockito.verify(categoryGateway, times(1)).create(argThat(aCategory -> {
             return Objects.equals(expectedName, aCategory.getName())
                     && Objects.equals(expectedDescription, aCategory.getDescription())
                     && Objects.equals(expectedIsActive, aCategory.isActive())
