@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import catalog.domain.category.Category;
 import catalog.domain.category.CategoryGateway;
+import catalog.domain.validation.handler.Notification;
 import catalog.domain.validation.handler.ThrowsValidationHandler;
 
 public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
@@ -20,8 +21,14 @@ public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
         final var aDescription = aCommand.description();
         final var isActive = aCommand.isActive();
 
+        final var notification = Notification.create();
         final var aCategory = Category.newCategory(aName, aDescription, isActive);
-        aCategory.validate(new ThrowsValidationHandler());
+
+        aCategory.validate(notification);
+
+        if (notification.hasError()) {
+            // Return the error
+        }
 
         // Pass the aCategory to the gateway to create
         // And pass CreateCategoryOutput to send the data to the FRONT-END or whatever

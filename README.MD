@@ -15,3 +15,7 @@
 **Start develop UseCase layer in application**
 
 - Use MOCKITO to mock behavior
+
+**Implement Notification pattens**
+
+- Project pattern to return notifications into the frontEnd
