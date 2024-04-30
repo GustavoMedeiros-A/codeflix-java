@@ -1,14 +1,14 @@
-// package catalog.application;
+package catalog.application;
 
-// import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-// import org.junit.Test;
+@ExtendWith(MockitoExtension.class)
+public class UseCaseTest {
 
-// public class UseCaseTest {
+    @Test
+    public void testCreateUseCase() {
 
-// @Test
-// public void shouldCreateUseCase() {
-// assertNotNull(new UseCase());
-// assertNotNull(new UseCase().execute());
-// }
-// }
+    }
+}
