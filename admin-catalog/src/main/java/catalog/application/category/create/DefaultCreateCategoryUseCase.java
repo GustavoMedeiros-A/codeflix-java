@@ -5,7 +5,8 @@ import java.util.Objects;
 import catalog.domain.category.Category;
 import catalog.domain.category.CategoryGateway;
 import catalog.domain.validation.handler.Notification;
-import catalog.domain.validation.handler.ThrowsValidationHandler;
+import io.vavr.API;
+import io.vavr.control.Either;
 
 public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
 
@@ -16,7 +17,7 @@ public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
     }
 
     @Override
-    public CreateCategoryOutput execute(CreateCategoryCommand aCommand) {
+    public Either<Notification, CreateCategoryOutput> execute(CreateCategoryCommand aCommand) {
         final var aName = aCommand.name();
         final var aDescription = aCommand.description();
         final var isActive = aCommand.isActive();
@@ -26,12 +27,13 @@ public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
 
         aCategory.validate(notification);
 
-        if (notification.hasError()) {
-            // Return the error
-        }
-
         // Pass the aCategory to the gateway to create
         // And pass CreateCategoryOutput to send the data to the FRONT-END or whatever
-        return CreateCategoryOutput.from(this.categoryGateway.create(aCategory));
+        // return CreateCategoryOutput.from(this.categoryGateway.create(aCategory));
+        return notification.hasError() ? API.Left(notification) : create(aCategory);
+    }
+
+    private Either<Notification, CreateCategoryOutput> create(Category aCategory) {
+        return API.Right(CreateCategoryOutput.from(this.categoryGateway.create(aCategory)));
     }
 }

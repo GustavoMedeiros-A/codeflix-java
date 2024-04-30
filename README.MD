@@ -19,3 +19,8 @@
 **Implement Notification pattens**
 
 - Project pattern to return notifications into the frontEnd
+
+**Use the lib VAVR to use EITHER**
+
+- Add functional programming into JAVA
+- "Need to be look as LOMBOK, as a library that need to fix something in the Java"
