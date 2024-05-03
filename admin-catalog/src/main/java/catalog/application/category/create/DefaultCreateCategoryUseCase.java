@@ -29,11 +29,23 @@ public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {
 
         // Pass the aCategory to the gateway to create
         // And pass CreateCategoryOutput to send the data to the FRONT-END or whatever
-        // return CreateCategoryOutput.from(this.categoryGateway.create(aCategory));
+
+        // Return a NOTIFICATION or a category CREATED
         return notification.hasError() ? API.Left(notification) : create(aCategory);
     }
 
     private Either<Notification, CreateCategoryOutput> create(Category aCategory) {
-        return API.Right(CreateCategoryOutput.from(this.categoryGateway.create(aCategory)));
+        return API.Try(() -> this.categoryGateway.create(aCategory))
+                .toEither()
+                /* /BIMAP have Either Left and Right */
+                .bimap(Notification::create, CreateCategoryOutput::from);
     }
+
+    // This is the same think of MAKING a TRY/CATCH
+    // try {
+    // return
+    // API.Right(CreateCategoryOutput.from(this.categoryGateway.create(aCategory)));
+    // } catch (Throwable t) {
+    // // return API.Left(Notification.create(t));
+    // }
 }
