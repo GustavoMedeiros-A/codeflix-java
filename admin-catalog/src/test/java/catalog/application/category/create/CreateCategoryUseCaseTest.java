@@ -2,12 +2,8 @@ package catalog.application.category.create;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.*;
-
-import java.nio.channels.IllegalSelectorException;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +11,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import catalog.domain.category.CategoryGateway;
-import catalog.domain.exceptions.DomainException;
 
 import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
