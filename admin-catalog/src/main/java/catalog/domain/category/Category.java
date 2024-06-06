@@ -5,7 +5,7 @@ import java.time.Instant;
 import catalog.domain.AggregateRoot;
 import catalog.domain.validation.ValidationHandler;
 
-public class Category extends AggregateRoot<CategoryID> {
+public class Category extends AggregateRoot<CategoryID> implements Cloneable {
 
     private String name;
     private String description;
