@@ -39,7 +39,7 @@ public class Category extends AggregateRoot<CategoryID> implements Cloneable {
         return new Category(id, name, description, isActive, now, now, deletedAt);
     }
 
-    public static Category with(final Category aCategory) {
+    public static Category myClone(final Category aCategory) {
         return new Category(
                 aCategory.getId(),
                 aCategory.name,
@@ -114,6 +114,15 @@ public class Category extends AggregateRoot<CategoryID> implements Cloneable {
 
     public Instant getDeletedAt() {
         return deletedAt;
+    }
+
+    @Override
+    public Category clone() {
+        try {
+            return (Category) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("cannot clone");
+        }
     }
 
 }
