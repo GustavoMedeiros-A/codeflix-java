@@ -2,7 +2,9 @@ package catalog.application.category.delete;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,8 @@ public class DeleteCategoryUseCaseTest {
         final var expectedId = aCategory.getId();
 
         // Do nothing when pass deleteById
-        Mockito.doNothing().when(categoryGateway).deleteById(eq(expectedId));
+        doNothing()
+                .when(categoryGateway).deleteById(eq(expectedId));
 
         assertDoesNotThrow(() -> useCase.execute(expectedId.getValue()));
 
