@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'com.catalog'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // JUnit 5 (Jupiter) dependencies
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+        // Mockito dependencies
+        testImplementation 'org.mockito:mockito-core:4.5.1'
+        testImplementation 'org.mockito:mockito-junit-jupiter:4.5.1'
+
+        // Vavr dependency
+        implementation 'io.vavr:vavr:0.10.3'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

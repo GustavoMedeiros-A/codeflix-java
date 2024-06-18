@@ -24,3 +24,10 @@
 
 - Add functional programming into JAVA
 - "Need to be look as LOMBOK, as a library that need to fix something in the Java"
+
+# Infrastructure SpringBoot
+
+- Pass to use Gradle now, is better :)
+- sudo snap install gradle --classic
+- gradle build
+- gradle wrapper

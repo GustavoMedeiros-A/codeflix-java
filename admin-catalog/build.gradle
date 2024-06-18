@@ -1,0 +1,7 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    // Module-specific dependencies can go here
+}

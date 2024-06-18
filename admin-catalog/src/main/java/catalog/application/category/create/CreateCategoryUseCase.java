@@ -10,6 +10,6 @@ import io.vavr.control.Either;
 // FIXME: Add Either here, so remember that and do not need to fix nothing
 
 public abstract class CreateCategoryUseCase
-        extends UseCase<CreateCategoryCommand, Either<Notification, CreateCategoryOutput>> {
+                extends UseCase<CreateCategoryCommand, Either<Notification, CreateCategoryOutput>> {
 
 }

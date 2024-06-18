@@ -1,0 +1,2 @@
+rootProject.name = 'codeflix-microservice-java'
+include 'admin-catalog'
