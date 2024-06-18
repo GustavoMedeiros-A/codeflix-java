@@ -31,3 +31,6 @@
 - sudo snap install gradle --classic
 - gradle build
 - gradle wrapper
+
+<infrastructure-03> $ ./gradlew clean bootJar
+<infrastructure-03> $ ./gradlew clean build
