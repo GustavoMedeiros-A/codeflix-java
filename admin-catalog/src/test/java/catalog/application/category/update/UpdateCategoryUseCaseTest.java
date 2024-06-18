@@ -20,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.*;
 
-import catalog.application.category.create.CreateCategoryCommand;
 import catalog.domain.category.Category;
 import catalog.domain.category.CategoryGateway;
 import catalog.domain.category.CategoryID;
