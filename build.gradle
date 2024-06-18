@@ -1,7 +1,6 @@
 plugins {
     id 'java'
 }
-
 group 'com.catalog'
 version '1.0-SNAPSHOT'
 
